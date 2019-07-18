@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='./vue.js'></script>
+</head>
+<body>
+    <div id='app' >
+        <input type="text"v-model="msg"></br>
+        <input type="text"@keyup="dd"></br>
+        user:{{msg}}
+
+        <p @click="aa">11
+
+            <a href="http://www.baidu.com" @click.stop.prevent>百度</a>
+        </p>
+        <!-- <p @mouseover="bb">22</p> -->
+    </div>
+    <script type='text/javascript'>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 0,
+                msg2:"aaaaaa",
+                nsg3:"<h1>bbbbb</h1>"
+            },
+            methods:{
+                aa:function(){
+                    // alert('111')
+                    this.msg++
+                },
+                // bb(){
+                //     alert('222')
+                // }
+                dd(event){
+                    console.log(event.keyCode);
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>
