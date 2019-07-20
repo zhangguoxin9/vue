@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+    <style></style>
+</head>
+<body>
+    <div id='app'>  
+        <!-- <div v-red >123</div> -->
+        <div v-color="msg">456</div>
+    </div>
+    <script type='text/javascript'>
+        Vue.directive('color', {
+            inserted: function(el,binding){
+            // el表示指令所绑定的元素
+            console.log(binding);
+            el.style.backgroundColor = binding.value
+
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg:'blue',
+            }
+        });
+    </script>
+</body>
+</html>

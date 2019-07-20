@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <input type="text" name="" id="" v-model='f1'>
+        <input type="text" name="" id="" v-model='f2'>
+        <p>{{aa}}</p>
+    </div>
+    <script type='text/javascript'>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                f1:1,
+                f2:1,
+                f:0,
+
+            },
+            computed:{
+                aa(){
+                    return this.f = parseInt(this.f1)+parseInt(this.f2)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}
+        <input type="text" name="" id="" v-model='aa'>
+        <input type="text" name="" id="" v-model='bb'>
+        <p>{{cc}}</p>
+    </div>
+    <script type='text/javascript'>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                aa:'',
+                bb:'',
+                cc:1
+            },
+            watch:{
+                aa(val){
+                    this.cc++
+                },
+                bb(val,kk){
+                    // kk=0
+                    console.log(kk);
+                    this.cc = this.bb
+                },
+                bb(){
+                    console.log(111);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

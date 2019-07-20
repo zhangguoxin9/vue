@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    1、自定义指令=====v-for  v-text  v-html        v-aa  v-bbb
+    2、watch  +  computed   ======重点
+    3、过滤器====
+
+    4、生命周期    ============    最重要
+
+
+
+
+
+    1、v-model.lazy=""
+        <div id='app'>
+                {{msg}}
+            <form action="">
+                用户名:<input type="text" name="username" id="" v-model.lazy="username" @input="ipt" @change="change">
+                密码：<input type="text" name="password" id="" v-model.lazy="password">
+                <input type="submit" value="提交" name="" id="">
+            </form>
+        </div>
+        <script type='text/javascript'>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'Hello Vue',
+                    username:"",
+                    password:""
+                },
+                methods:{
+                    ipt(){},
+                    change(){
+                    if(this.username.length<6) return  alert("请输入长度为6的用户名");
+                    }
+                }
+            });
+        </script>
+
+    2、自定义指令    inserted 钩子函数
+        Vue.directive(指令名字【自定义】,{
+            inserte:function(el){
+
+            }
+        })
+
+    3、自定义过滤器======有返回值
+        Vue.filter(名字【自定义】,function(){
+            return  ======
+        })
+
+    4、computed   ======返回值
+        1、初次进入会立刻执行函数
+        2、只要是函数的返回值中有一个属性发生了改变函数就会立刻被调用
+
+    5、watch  =====
+        1、初次进入不会立刻执行函数
+        2、只要是你监视的属性发生了改变那么这个就会立刻出发===只会触发一次
+    
+</body>
+</html>

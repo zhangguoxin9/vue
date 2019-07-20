@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}
+        <p >{{msg | aa('   Hello')}}</p>
+        <p >{{msg | bb}}</p>
+    </div>
+    <script type='text/javascript'>
+        // Vue.filter('aa',function(val,str){
+        //     return val.replace('Hello','你好'+str)
+        // })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            filters:{
+                aa(val,str){
+                    return val.replace('Hello','你好'+str)
+                },
+                bb(val){
+                    return val.replace('Vue','word')
+                }
+            }
+        });
+    </script>
+</body>
+</html>
