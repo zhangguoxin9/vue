@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{msg}}
+
+        <aa></aa>
+
+        <b-B></b-B>
+
+        <cc></cc>
+    </div>
+
+
+
+    <script type='text/javascript'>
+        Vue.component("aa", {
+            data() {
+                return {
+                    msg: 1111
+                }
+            },
+            template: "<div>这是一个组件    <div>{{msg}}</div></div> ",
+            methods: {},
+            created() {
+                this.msg = "2222222";
+            }
+        })
+
+        var str = `<div>这是一个bb组件    
+                <div>{{msg}}</div>
+            </div>`
+
+        Vue.component("bB", {
+            data() {
+                return {
+                    msg: 1111
+                }
+            },
+            template: str,
+            methods: {},
+            created() {
+                this.msg = "bbbb";
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            components: {
+                cc: {
+                    data() {
+                        return {
+                            msg: "cccc"
+                        }
+                    },
+                    template: "<div>这是一个cc组件 </div> ",
+                    methods: {},
+                    created() {
+                        this.msg = "ccccccc";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

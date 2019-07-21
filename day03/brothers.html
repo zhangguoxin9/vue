@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}
+
+        <brother></brother>
+
+        <sister></sister>
+
+    </div>
+    <script type='text/javascript'>
+        var  enveBus=new  Vue();
+
+        var  brother={
+            template:`<div @click="bb">这是一个哥哥组件===={{br}}</div>`,
+            data(){
+                return  {
+                    br:""
+                }
+            },
+            methods:{
+                bb(){
+                    enveBus.$emit("bTs","这是哥哥给妹妹的爱")
+                }
+            },
+            mounted(){
+                enveBus.$on("sTb",(message2)=>{
+                    this.br=message2
+                })
+            }
+        }
+
+        var  sister={
+            template:`<div @click="cc">这是一个妹妹组件===={{sis}}</div>`,
+            data(){
+                return  {
+                    sis:""
+                }
+            },
+            methods:{
+                cc(){
+                    enveBus.$emit("sTb","这是妹妹给哥哥的爱")
+                }
+            },
+            mounted(){
+                enveBus.$on("bTs",(message)=>{
+                    this.sis=message
+                    console.log(message,555)
+                    
+                })
+            }
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            components:{
+                brother,
+                sister
+            }
+        });
+    </script>
+</body>
+</html>

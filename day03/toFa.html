@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}====
+
+        <father :aa="msg" :bb="msg2" @tofa="app"></father>  
+
+    </div>
+    <script type='text/javascript'>
+        var  son={
+            template:"<div>这是一个son组件====={{bb}}</div>",
+            data(){
+                return  {
+                    sn:"son"
+                }
+            },
+            methods:{},
+            props:["bb"]
+        }
+
+        // var  father={
+        //     template:`<div @click='$emit("tofa")'>这是一个father组件==={{aa}}=={{bb}}  <son :bb='ft'></son></div>`,
+        //     data(){
+        //         return  {
+        //             ft:"father"
+        //         }
+        //     },
+        //     methods:{},
+        //     components:{
+        //         son
+        //     },
+        //     props:["aa","bb"]
+        // }
+
+        var  father={
+            template:`<div @click='fff'>这是一个father组件==={{aa}}=={{bb}}  <son :bb='ft'></son></div>`,
+            data(){
+                return  {
+                    ft:"father"
+                }
+            },
+            methods:{
+                fff(){
+                   this.$emit("tofa") 
+                }
+            },
+            components:{
+                son
+            },
+            props:["aa","bb"]
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                msg2: 'Hello world',
+            },
+            components:{
+                father:father
+            },
+            methods:{
+                app(){
+                    console.log(11111)
+                    
+                }
+            }
+        });
+    </script>
+</body>
+</html>

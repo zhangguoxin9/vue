@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{msg}}
+    </div>
+    <script type='text/javascript'>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                arr: [{
+                    id: 1,
+                    name: '三国演义',
+                    date: ''
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    date: ''
+                }, {
+                    id: 3,
+                    name: '红楼梦',
+                    date: ''
+                }, {
+                    id: 4,
+                    name: '西游记',
+                    date: ''
+                }]
+            },
+            methods: {
+
+            },
+            created() {
+               var  newArr= this.arr.filter(item => {
+                    return item.id<4
+                })
+                console.log(newArr,666)
+                
+            },
+        });
+    </script>
+</body>
+
+</html>

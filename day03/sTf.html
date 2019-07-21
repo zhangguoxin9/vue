@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{msg}}===={{app}}
+        <father :aa="msg" @cc="show"></father>
+    </div>
+
+    <script type='text/javascript'>
+        var  son={
+            template:`<div @click="$emit('dd',msg3)">这是son组件===={{bb}}</div>`,
+            props:["bb"],
+            data(){
+                return  {
+                    msg3:"这是一个son组件"
+                }
+            }
+        }
+
+        // var  son={
+        //     template:`<div @click="son">这是son组件===={{bb}}</div>`,
+        //     props:["bb"],
+        //     data(){
+        //         return  {
+        //             msg3:"这是一个son组件"
+        //         }
+        //     },
+        //     methods:{
+        //         son(){
+        //             this.$emit("dd",this.msg3)
+        //         }
+        //     }
+        // }
+
+        // var father = {
+        //     template: `<div @click='$emit("cc")'>这是一个father组件===={{aa}}====  <son @dd="show2" :bb='msg1'></son></div>`,
+        //     data(){
+        //         return  {
+        //             msg1:"这是一个father"
+        //         }
+        //     },
+        //     components:{
+        //         son
+        //     },
+        //     props:["aa"],
+        //     methods:{
+        //         show2(){
+        //             console.log("这是son向father触发他的事件")                   
+        //         }
+        //     }
+        // }
+
+        var father = {
+            template: `<div @click='qq'>这是一个father组件=={{ff}}=={{aa}}====  <son @dd="show2" :bb='msg1'></son></div>`,
+            data(){
+                return  {
+                    msg1:"这是一个father",
+                    ff:""
+                }
+            },
+            components:{
+                son
+            },
+            props:["aa"],
+            methods:{
+                show2(message2){
+                    this.ff=message2
+                    console.log(message2,99999);
+                },
+                qq(){
+                    this.$emit("cc",this.msg1)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                app:""
+            },
+            components:{
+                father:father
+            },
+            methods:{
+                show(message){
+                    this.app=message;
+                    console.log(message,1111)
+                    
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

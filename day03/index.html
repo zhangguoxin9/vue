@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg | bb("vue")}}
+
+        <p v-aa="fontSize">1111</p>
+
+       f1 <input type="text" name="" id="" v-model="f1">
+        f2<input type="text" name="" id="" v-model="f2">
+        ====={{f}}====
+
+        f3 <input type="text" name="" id="" v-model="f3">
+        f4<input type="text" name="" id="" v-model="f4">
+        ====={{ff}}===={{cc}}
+    </div>
+    <script type='text/javascript'>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                fontSize:"50px",
+                f1:"",
+                f2:"",
+                f:"",
+                f3:"",
+                f4:"",
+                ff:""
+            },
+            methods:{},
+            directives:{
+                aa:{
+                    bind(){},
+                    inserted(el,binding){
+                        console.log(el,binding,6666)
+                        el.style.color="red"
+                        el.style.fontSize=binding.value;
+                    }
+                }
+            },
+            filters:{
+                bb(str,qq){
+                    return  str.replace("Vue","world"+qq)
+                }
+            },
+            watch:{
+                f1(){
+                    this.f=Number(this.f1)+Number(this.f2)
+                },
+                f2(){
+                    this.f=Number(this.f1)*Number(this.f2)
+                }
+            },
+            computed:{
+                cc(){
+                    return this.ff=Number(this.f3)+Number(this.f4)
+                }
+            }
+        });
+    </script>
+
+
+
+
+    今日知识点：
+    1、实例的生命周期
+    2、组件化开发=======index.html
+
+1、实例的生命周期    
+    1、beforeCreate(){}======在这个阶段data中的数据和methods中的函数都没有加载完
+
+    2、created(){}=====
+        1、在这个阶段data中的数据和methods中的函数都加载完了可以直接拿过来用
+        2、dom结构还没有渲染完
+
+    3、beforeMount(){}=====
+        1、在这个阶段data中的数据和methods中的函数都加载完了可以直接拿过来用
+        2、dom结构还已渲染完====但是data中的数据还没有解析  {{msg}}
+        
+    4、mounted(){}======window.onload=function(){}
+        1、在这个阶段data中的数据和methods中的函数都加载完了可以直接拿过来用
+        2、dom结构已渲染完====data中的数据已解析  
+
+
+案例编辑功能
+    1、给v-model="id"  绑定:disabled="flag"   初始值= =====flag=false
+    2、点击编辑按钮  传入id
+        1、使用filter循环遍历数组=====item.id==id    存入一个新数组中
+        2、将新数组中的值赋值给data中的id+name
+        3、设置this.flag=true
+
+    3、绑定点击事件   提交按钮
+        1、判断到底是修改提交还是添加提交
+            if(this.flag)====说明是修改
+                1、使用some循环数组和this.id进行匹配====将data中的id+name重新赋值
+            否则就是添加
+                2、将数据获取放入一个新的对象中然后进行添加
+                
+</body>
+</html>
