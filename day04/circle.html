@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{msg}}
+    </div>
+    <script type='text/javascript'>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            beforeCreate() {
+            // 实例对象中的属性+方法不能使用
+            },
+            created() {
+                // 实例对象中的属性+方法能使用    结构还没有渲染到页面中
+            },
+
+            beforeMount() {
+                // 实例对象中的属性+方法能使用    结构已经渲染到页面中   数据还没有解析出来  {{msg}}
+                
+            },
+            mounted(){
+            // 实例对象中的属性+方法能使用    结构已经渲染到页面中   数据已经解析出来  {{msg}}    window.onload
+            }
+        });
+    </script>
+</body>
+
+</html>

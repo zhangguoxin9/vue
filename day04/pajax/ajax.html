@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    
+
+    <script>
+       $(function(){
+        function  ajaxPromise(url,type){
+            var  p=new  Promise(function(resolve,reject){
+                $.ajax({
+                    url:url,
+                    type:type,
+                    data:{},
+                    success:resolve
+                })
+            });
+            return  p 
+        }
+
+        console.log(ajaxPromise("http://127.0.0.1:3000/fdata","get"),8888)
+        
+        ajaxPromise("http://127.0.0.1:3000/fdata","get").then(function(res){
+            console.log(res,666);
+        })
+
+        ajaxPromise("http://127.0.0.1:3000/books/2","get").then(function(res){
+            console.log(res,777);
+        })
+       })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}
+        <brother></brother>
+        <sister></sister>
+    </div>
+    <script type='text/javascript'>
+
+        var  Bus=new  Vue();
+
+        var  brother={
+            data(){
+                return  {
+                    com1:"这是一个son组件1111",
+                    bb:"我是哥哥"
+                }
+            },
+            mrthods:{},
+            template:`<div @click="broth">这是一个brother组件=====</div>`,
+            methods: {
+                broth(){
+                    Bus.$emit("qq",this.bb)
+                }
+            },
+        };
+
+        var  sister={
+            data(){
+                return  {
+                    com1:"这是一个sister组件00000",
+                    ss:"我是妹妹",
+                    sist:""
+                }
+            },
+            mrthods:{},
+            template:`<div >这是一个sister组件====={{sist}}</div>`,
+            methods: {
+               
+            },
+            mounted() {
+                Bus.$on("qq",(val)=>{
+                    this.sist=val
+                })
+            },  
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            components:{
+                brother,
+                sister
+
+            }
+        });
+    </script>
+</body>
+</html>

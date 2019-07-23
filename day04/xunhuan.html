@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+   <script>
+       var  array=[1,2,3,4];
+
+
+       for (let index = 0; index < array.length; index++) {
+          
+           //获取每一项 array[index]
+       }
+
+/* 没有返回值  条件满足就终止循环 */
+       array.forEach(element => {
+         //获取每一项  element
+         if(element=="3") return  true;
+       });
+
+       //console.log(flag22,777);
+
+       var  newArr=array.filter(item=>{
+           return  item=="2"
+       })
+      ///console.log(newArr,7777);
+
+/* 有返回值  条件满足就终止循环 */
+       var  flag=array.some(element => {
+         //获取每一项  element
+         if(element=="3") return  true;
+       });
+
+
+/* 有返回值  条件满足的那一项的索引 */
+       var  flag3333=array.findIndex(element => {
+         //获取每一项  element
+         if(element=="3") return  true;
+       });
+
+       console.log(flag3333,7777);
+
+   
+       
+
+
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{msg}}
+
+        <brother>
+            <p slot="aa">返回  <sapn>扫一扫</sapn></p>
+            <p>左边</p>
+            <p>右边</p>
+            <p slot="cc">底部</p>
+        </brother>
+
+    </div>
+    <script type='text/javascript'>
+
+        var brother = {
+            data() {
+                return {
+                    com1: "这是一个son组件1111",
+                    bb: "我是哥哥"
+                }
+            },
+            mrthods: {},
+            template: `<div>
+                这是一个brother组件=====
+                <header>
+                        <slot name="aa"></slot>
+                </header>
+               <main>
+                    <slot></slot>
+               </main>
+                
+
+                <footer>
+                        <slot name="cc"></slot>
+                </footer>
+                
+            </div>`,
+          
+        };
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            components:{
+                brother
+            }
+        });
+    </script>
+</body>
+
+</html>

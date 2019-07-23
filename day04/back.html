@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script type='text/javascript' src='js/vue.js'></script>
+</head>
+<body>
+    <div id='app'>
+        {{msg}}==={{appMsg}}
+        <com1 :aa="msg" @app="show"></com1>
+
+ 
+
+    </div>
+    <script type='text/javascript'>
+
+        var  son={
+            data(){
+                return  {
+                    com1:"这是一个son组件"
+                }
+            },
+            mrthods:{},
+            template:`<div @click.stop="toCom1">这是一个father的子组件======{{bb}}==={{cc}}</div>`,
+            props:["bb","cc"],
+            methods: {
+                toCom1(){
+                    this.$emit("com1Event",this.com1)
+                }
+            },
+        }
+
+        var  com1={
+            data(){
+                return  {
+                    com1:"这是一个com1组件",
+                    com2:"hahahha",
+                    com3:""
+                }
+            },
+            mrthods:{},
+            template:`<div @click="toF">这是一个father组件  <son :bb="com1" :cc="com2" @com1Event="showCom1"></son>   {{aa}}======********{{com3}}</div>`,
+            components:{
+                son:son
+            },
+            props:["aa"],
+            methods:{
+                toF(){
+                    this.$emit("app",this.com1)
+                },
+
+                showCom1(val){
+                    this.com3=val;
+                    console.log(val,22222);
+                    
+                }
+            }
+
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                appMsg:""
+            },
+            components:{
+                com1
+            },
+            methods:{
+                show(val){
+                    this.appMsg=val;
+                    console.log(val,111111);
+                    
+                }
+            }
+        });
+    </script>
+</body>
+</html>
